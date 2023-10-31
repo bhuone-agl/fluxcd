@@ -12,6 +12,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: demo-app
-  targetNamespace: default
+  targetNamespace: kuma-demo
   timeout: 3m0s
   wait: true
