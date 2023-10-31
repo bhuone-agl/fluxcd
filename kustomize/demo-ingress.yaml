@@ -4,7 +4,7 @@ metadata:
   name: demo-app-ingress
   namespace: kuma-demo
   annotations:
-    konghq.com/strip-path: "true"
+    konghq.com/strip-path: "false"
 spec:
   ingressClassName: kong
   rules:
@@ -16,35 +16,4 @@ spec:
           service:
             name: demo-app
             port:
-              number: 80
----
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: add-demo-prefix
-  namespace: kuma-demo
-config:
-  add:
-    request:
-      - path: /demo$uri
-plugin: request-transformer
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo-app-ingress-rest
-  namespace: kuma-demo
-  annotations:
-    konghq.com/plugins: add-demo-prefix
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /*
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: demo-app
-            port:
-              number: 80             
+              number: 80        
