@@ -30,7 +30,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /demo/*
+      - path: /*
         pathType: ImplementationSpecific
         backend:
           service:
