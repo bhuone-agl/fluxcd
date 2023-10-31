@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-app-ingress
+  namespace: kuma-demo
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /demo
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: demo-app
+            port:
+              number: 80
