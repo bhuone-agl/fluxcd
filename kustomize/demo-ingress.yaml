@@ -3,13 +3,15 @@ kind: Ingress
 metadata:
   name: demo-app-ingress
   namespace: kuma-demo
+  annotations:
+    konghq.com/strip-path: "true"
 spec:
   ingressClassName: kong
   rules:
   - http:
       paths:
       - path: /demo
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: demo-app
